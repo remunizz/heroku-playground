@@ -1,4 +1,5 @@
 var req = require('request');
+var path = require('path');
 var bodyParser = require('body-parser');
 var multer = require('multer'); // v1.0.5
 var express = require('express');
@@ -9,12 +10,14 @@ var pg = require('pg');
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
+app.use('/', express.static(path.join(__dirname, 'build')));
+/*
+app.use('/static/js/', express.static(path.join(__dirname, 'build/static/js/')));
+app.use('/static/css/', express.static(path.join(__dirname, 'build/static/css/')));
+app.use('/static/media/', express.static(path.join(__dirname, 'build/static/media/')));
+*/
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-app.get('/', function(request, response) {
-  response.send("hi!");
-});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

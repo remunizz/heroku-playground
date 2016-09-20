@@ -4,7 +4,8 @@
   "description": "⛅ Fun with heroku",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npm run build && node index.js",
+    "build": "react-scripts build && cp manifest.json build/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +23,20 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "multer": "^1.2.0",
+    "path": "^0.12.7",
     "pg": "^6.1.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "request": "^2.75.0"
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^0.11.0",
+    "path": "^0.12.7",
+    "react-scripts": "^0.4.3",
+    "sw-precache": "^4.0.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/react-scripts/config/eslint.js"
+  },
+  "homepage": "./"
 }
