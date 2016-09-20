@@ -10,9 +10,13 @@ var pg = require('pg');
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
-app.use('/', express.static(path.join(__dirname, '/build')));
+app.use('/build', express.static(path.join(__dirname, '/build')));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.get('/', function(request, response) {
+	response.send("hi!");
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
