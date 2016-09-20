@@ -10,12 +10,7 @@ var pg = require('pg');
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
-app.use('/', express.static(path.join(__dirname, 'build')));
-/*
-app.use('/static/js/', express.static(path.join(__dirname, 'build/static/js/')));
-app.use('/static/css/', express.static(path.join(__dirname, 'build/static/css/')));
-app.use('/static/media/', express.static(path.join(__dirname, 'build/static/media/')));
-*/
+app.use('/', express.static(path.join(__dirname, '/build')));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
