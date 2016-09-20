@@ -7,6 +7,8 @@ var app = express();
 var upload = multer(); // for parsing multipart/form-data
 var pg = require('pg');
 
+var MANIFEST_FILE = path.join(__dirname, 'build/manifest.json');
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/build'));
@@ -15,6 +17,18 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.get('/', function(request, response) {
 	response.send("hi!");
+});
+
+app.get('/manifest.json', function(req, res) {
+  fs.readFile(MANIFEST_FILE, function(err, data) {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+
+    res.set('Content-Type', 'application/json');
+    res.send(data);
+  });
 });
 
 app.listen(app.get('port'), function() {
