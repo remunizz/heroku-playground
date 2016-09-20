@@ -4,7 +4,8 @@
   "description": "⛅ Fun with heroku",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node index.js",
+  	"postinstall": "npm run build",
+    "start": "node index.js",
     "build": "react-scripts build && cp manifest.json build/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
