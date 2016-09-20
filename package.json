@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/remunizz/heroku-playground#readme",
   "dependencies": {
-    "sw-precache": "^4.0.0"
+    "sw-precache": "^4.0.0",
     "react-scripts": "^0.4.3",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
