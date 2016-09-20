@@ -16,6 +16,21 @@ app.use(express.static(__dirname + '/build'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+app.get('/data', ( request, response ) => {
+	pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+	  client.query('SELECT * FROM ' + process.env.DATABASE_NAME + ' order by id desc', (err, result) => {
+			done();
+
+			if (err){
+			  console.error(err);
+				response.send("Error " + err);
+			}else{
+				response.send( result.rows );
+			}
+		});
+	});
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
