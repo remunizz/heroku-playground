@@ -40,5 +40,9 @@
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
   },
-  "homepage": "./"
+  "homepage": "./",
+  "engines": {
+      "node": "6.2.0",
+      "npm": "3.8.9"
+  } 
 }
