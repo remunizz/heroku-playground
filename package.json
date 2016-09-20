@@ -6,7 +6,7 @@
   "scripts": {
   	"postinstall": "npm run build",
     "start": "node index.js",
-    "build": "react-scripts build && cp manifest.json build/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'",
+    "build": "react-scripts build && cp manifest.json build/ && cp favicon.ico build/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
