@@ -1,4 +1,5 @@
 var req = require('request');
+var fs = require("fs");
 var path = require('path');
 var bodyParser = require('body-parser');
 var multer = require('multer'); // v1.0.5
