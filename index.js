@@ -10,13 +10,16 @@ var pg = require('pg');
 
 var MANIFEST_FILE = path.join(__dirname, 'build/manifest.json');
 
+var API_MAIN_VERSION = 0;
+var API_PREFIX = 'api/v' + API_MAIN_VERSION.toString();
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/build'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.get('/data', ( request, response ) => {
+app.get(API_PREFIX + '/logs', ( request, response ) => {
 	pg.connect(process.env.DATABASE_URL, (err, client, done) => {
 	  client.query('SELECT * FROM ' + process.env.DATABASE_NAME + ' where status = 1 order by time desc LIMIT(10)', (err, result) => {
 			done();
