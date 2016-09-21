@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.get('/data', ( request, response ) => {
 	pg.connect(process.env.DATABASE_URL, (err, client, done) => {
-	  client.query('SELECT * FROM ' + process.env.DATABASE_NAME + ' order by id desc', (err, result) => {
+	  client.query('SELECT * FROM ' + process.env.DATABASE_NAME + ' where status = 1 order by time desc LIMIT(10)', (err, result) => {
 			done();
 
 			if (err){
